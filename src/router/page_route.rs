@@ -1,7 +1,7 @@
 use gtk::glib::{self, IsA};
 
 
-pub trait Route
+pub trait PageRoute
 where
     Self: glib::ObjectExt + 'static,
     Self::Parameter: glib::FromVariant + glib::ToVariant,

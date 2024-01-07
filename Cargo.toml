@@ -12,5 +12,4 @@ adw = { version = "0.5.3", package = "libadwaita", features = [
 ] }
 async-channel = "2.1.1"
 gtk = { version = "0.7.3", package = "gtk4" }
-tokio = { version = "1.35.1" }
-
+tokio = { version = "1.35.1", features = ["rt", "rt-multi-thread"] }
