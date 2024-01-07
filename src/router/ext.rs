@@ -5,7 +5,7 @@ use gtk::prelude::*;
 use gtk::{gio, glib};
 
 use crate::prelude::IsVariantTyVoidExt;
-use crate::PageRoute;
+use crate::{DisplayableError, PageRoute};
 
 pub trait RoseRouterExt:
     glib::object::IsClass + IsA<super::Router> + IsA<glib::Object> + IsA<gtk::Widget> + IsA<adw::Bin>
@@ -62,13 +62,39 @@ pub trait RoseRouterExt:
     {
         let imp = super::imp::Router::from_obj(self.upcast_ref());
 
-        imp.main_pages.borrow().add_titled_with_icon(
+        imp.view_switcher_pages.borrow().add_titled_with_icon(
             &adw::Bin::new(),
             Some(R::route()),
             title,
             icon,
         );
         self.add_route::<R>();
+    }
+
+    fn show_error<E>(&self, error: &E)
+    where
+        E: DisplayableError + 'static,
+    {
+        let imp = super::imp::Router::from_obj(self.upcast_ref());
+
+        let page = adw::StatusPage::builder()
+            .title(&error.tile())
+            .description(&error.body())
+            .build();
+
+        let page = adw::NavigationPage::builder().child(&page).build();
+        let view = imp.view.borrow().clone();
+        let current_page = match view.visible_page() {
+            Some(page) => page,
+            None => return,
+        };
+        let is_first = view.previous_page(&current_page).is_none();
+        if is_first {
+            view.replace(&[page]);
+        } else {
+            view.pop();
+            view.push(&page);
+        }
     }
 
     /// Navigates to a route by its type. this will activate the action with

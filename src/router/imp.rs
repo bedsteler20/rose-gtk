@@ -8,8 +8,7 @@ use std::cell::{Cell, RefCell};
 
 use crate::Application;
 
-
-#[derive(Default, Debug, glib::Properties)]
+#[derive(Default, glib::Properties)]
 #[properties(wrapper_type = super::Router)]
 pub struct Router {
     #[property(set, get)]
@@ -17,7 +16,7 @@ pub struct Router {
     #[property(get, set)]
     pub can_go_back: Cell<bool>,
     #[property(set, get)]
-    pub main_pages: RefCell<adw::ViewStack>,
+    pub view_switcher_pages: RefCell<adw::ViewStack>,
     pub action_group: gio::SimpleActionGroup,
 }
 

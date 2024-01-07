@@ -1,6 +1,5 @@
 use gtk::glib::{self, IsA};
 
-
 pub trait PageRoute
 where
     Self: glib::ObjectExt + 'static,
@@ -37,7 +36,7 @@ where
     fn build(parameter: Option<Self::Parameter>) -> impl IsA<gtk::Widget>;
 
     /// This function should build the navigation page that will be
-    /// added to the view stack when the route is navigated to. 
+    /// added to the view stack when the route is navigated to.
     /// By default this will just build a navigation page with the
     /// title set to the route and the child set to the result of
     /// `Self::build` but this can be overridden if you need to

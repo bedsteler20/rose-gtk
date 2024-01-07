@@ -12,6 +12,8 @@ pub use future::spawn::RUNTIME;
 
 pub use application::Application;
 pub use router::page_route::PageRoute;
+pub use router::Router;
+pub use router::error::DisplayableError;
 
 pub mod prelude {
     pub use crate::application::ext::RoseApplicationExt;
