@@ -1,8 +1,8 @@
 mod application;
+mod functions;
 mod future;
 mod router;
 mod utils;
-
 pub use future::channels::Channel;
 pub use future::channels::Receiver;
 pub use future::channels::Sender;
@@ -11,9 +11,14 @@ pub use future::spawn::spawn_background_thread;
 pub use future::spawn::RUNTIME;
 
 pub use application::Application;
+pub use router::error::DisplayableError;
 pub use router::page_route::PageRoute;
 pub use router::Router;
-pub use router::error::DisplayableError;
+
+pub use functions::add_dependency;
+pub use functions::back;
+pub use functions::get_dependency;
+pub use functions::visit;
 
 pub mod prelude {
     pub use crate::application::ext::RoseApplicationExt;
