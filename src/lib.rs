@@ -23,6 +23,7 @@ pub use functions::init;
 
 pub mod prelude {
     pub use crate::application::ext::RoseApplicationExt;
+    pub use crate::router::ext::RoseRouterExt;
     pub use crate::utils::variant::IsVariantTyVoidExt;
     pub use crate::utils::weak_ref::AsWeakRefExt;
 }
