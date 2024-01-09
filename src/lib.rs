@@ -19,6 +19,7 @@ pub use functions::add_dependency;
 pub use functions::back;
 pub use functions::get_dependency;
 pub use functions::visit;
+pub use functions::init;
 
 pub mod prelude {
     pub use crate::application::ext::RoseApplicationExt;

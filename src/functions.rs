@@ -1,4 +1,4 @@
-use gtk::glib::{IsA, self};
+use gtk::glib::{IsA, self, StaticTypeExt};
 
 use crate::{PageRoute, Application, prelude::RoseApplicationExt, Router, router::ext::RoseRouterExt};
 
@@ -16,4 +16,9 @@ pub fn get_dependency<T: IsA<glib::Object>>() -> T {
 
 pub fn add_dependency<T: IsA<glib::Object>>(dependency: &T) {
     Application::find().add_dependency::<T>(dependency);
+}
+
+pub fn init() {
+    Application::ensure_type();
+    Router::ensure_type();
 }
