@@ -73,7 +73,7 @@ pub trait RoseRouterExt:
 
     fn show_error<E>(&self, error: &E)
     where
-        E: DisplayableError + 'static,
+        E: DisplayableError,
     {
         let imp = super::imp::Router::from_obj(self.upcast_ref());
 

@@ -18,8 +18,9 @@ pub use router::Router;
 pub use functions::add_dependency;
 pub use functions::back;
 pub use functions::get_dependency;
-pub use functions::visit;
 pub use functions::init;
+pub use functions::show_error_page;
+pub use functions::visit;
 
 pub mod prelude {
     pub use crate::application::ext::RoseApplicationExt;
