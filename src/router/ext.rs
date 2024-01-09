@@ -78,7 +78,7 @@ pub trait RoseRouterExt:
         let imp = super::imp::Router::from_obj(self.upcast_ref());
 
         let page = adw::StatusPage::builder()
-            .title(&error.tile())
+            .title(&error.title())
             .description(&error.body())
             .build();
 
