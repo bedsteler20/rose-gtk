@@ -35,12 +35,12 @@ pub static RUNTIME: once_cell::sync::Lazy<Runtime> =
 /// ```
 pub fn spawn_async<T>(
     future: impl std::future::Future<Output = T> + 'static + Send,
-    callback: impl FnOnce(T) + 'static + Send,
+    callback: impl FnOnce(T) + 'static,
 ) where
     T: Send + 'static,
 {
     let handel = RUNTIME.spawn(future);
- 
+
     glib::spawn_future_local(async move {
         callback(handel.await.unwrap());
     });
