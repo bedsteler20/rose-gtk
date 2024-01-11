@@ -13,7 +13,7 @@ impl IsVariantTyVoidExt for glib::VariantTy {
         if self.is_tuple() {
             return self.n_items() == 0;
         } else {
-            return true;
+            return false;
         }
     }
 }

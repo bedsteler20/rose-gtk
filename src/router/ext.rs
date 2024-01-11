@@ -4,7 +4,7 @@ use gtk::glib::{Cast, VariantTy};
 use gtk::prelude::*;
 use gtk::{gio, glib};
 
-use crate::prelude::IsVariantTyVoidExt;
+use crate::prelude::*;
 use crate::{DisplayableError, PageRoute};
 
 pub trait RoseRouterExt:
@@ -118,7 +118,8 @@ pub trait RoseRouterExt:
     unsafe fn visit_unsafe(&self, route: &str, parameter: Option<glib::Variant>) {
         let imp = super::imp::Router::from_obj(self.upcast_ref());
 
-        imp.action_group.activate_action(route, parameter.as_ref());
+        imp.action_group
+            .activate_action(&format!("visit.{route}"), parameter.as_ref());
     }
 
     /// Navigates back. This will activate the action with the name `back`.

@@ -5,7 +5,9 @@ use gtk::{
 
 use crate::prelude::RoseApplicationExt;
 
-trait RoseWidgetExt: IsA<gtk::Widget> {
+impl<T: IsA<gtk::Widget>> RoseWidgetExt for T {}
+
+pub trait RoseWidgetExt: IsA<gtk::Widget> {
     /// Try's to find the current widget's ancestor of type `T` and downcasts it to `T`
     fn try_find_ancestor<T: IsA<gtk::Widget>>(&self) -> Option<T> {
         self.ancestor(T::static_type())
@@ -37,7 +39,7 @@ trait RoseWidgetExt: IsA<gtk::Widget> {
     /// and add the toast to it.
     /// If the ancestor is not found, it will try to find the application and get the dependency
     /// of type `adw::ToastOverlay`. If the dependency is not found, it will panic.
-    /// 
+    ///
     /// # Example
     /// ```
     /// let overlay = adw::ToastOverlay::new();

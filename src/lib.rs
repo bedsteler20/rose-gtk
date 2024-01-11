@@ -27,6 +27,7 @@ pub mod prelude {
     pub use crate::router::ext::RoseRouterExt;
     pub use crate::utils::variant::IsVariantTyVoidExt;
     pub use crate::utils::weak_ref::AsWeakRefExt;
+    pub use crate::utils::widget::RoseWidgetExt;
 }
 
 pub mod subclass {
